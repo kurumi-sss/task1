@@ -1,5 +1,14 @@
 const Header = () => {
-  return <h1 class="bg-secondary text-white display-4">ヘッダー</h1>;
+  return (
+    <div className="header-top">
+      <div className="header-items">
+        <a href="/">Blog</a>
+      </div>
+      <div className="header-contact">
+        <a href="/src/components/Contact.js">お問合せ</a>
+      </div>
+    </div>
+  );
 };
 
 export default Header;
