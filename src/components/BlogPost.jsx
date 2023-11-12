@@ -53,8 +53,19 @@ const BlogPost = () => {
             <li className="">
               <div className="blog-post-info">
                 <p>日付</p>
-                <p>カテゴリ</p>
-              </div>
+                <div>
+                          {post.categories.map((category) => {
+                            return (
+                              <div
+                                key={category}
+                              >
+                                {category}
+                              </div>
+                          )
+                          })}
+                        </div>
+                        </div>
+
               <a href="../data/Posts.js">{post.title}</a>
               {/* <p>{post.content}</p> */}
               <div dangerouslySetInnerHTML={{ __html: post.content }} />
