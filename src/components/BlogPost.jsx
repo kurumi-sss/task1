@@ -1,15 +1,32 @@
+import { posts } from "../data/Posts";
+
 const BlogPost = () => {
   return (
     <div className="blog-post">
       <ul className="blog-post-list">
-        <li>
-          <div className="blog-post-info">
-            <p>日付</p>
-            <p>カテゴリ</p>
-          </div>
-          <a href="../data/Posts.js">記事タイトル１</a>
-          <p>本文です。本文です。本文です。本文です。本文です。</p>
-        </li>
+        {posts.map((post) => {
+          return (
+            <li className="">
+              <div className="blog-post-info">
+                <div className="blog-date">
+                  {new Date(post.createdAt).toLocaleString("ja-JP")}
+                </div>
+                <div className="blog-category">
+                  {post.categories.map((category) => {
+                    return (
+                      <div className="category" key={category}>
+                        {category}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+              <a href="../data/Posts.jsx">{post.title}</a>
+              {/* <p>{post.content}</p> */}
+              <div dangerouslySetInnerHTML={{ __html: post.content }} />
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
