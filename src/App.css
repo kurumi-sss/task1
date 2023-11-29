@@ -35,10 +35,6 @@ a:visited {
   padding: 15px;
 }
 
-.blog-post-list > li > a {
-  font-size: 30px;
-}
-
 .blog-post-list > li > p {
   font-size: 18px;
 }
@@ -70,4 +66,15 @@ a:visited {
   align-items: center;
   justify-content: space-between;
   padding: 24px;
+  width: auto;
+}
+
+/* BlogDetail.js */
+.blog-detail {
+  margin: 40px auto;
+  max-width: 800px;
+}
+
+.blog-detail-info {
+  padding: 10px;
 }
