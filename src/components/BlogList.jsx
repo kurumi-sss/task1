@@ -1,6 +1,7 @@
 import { posts } from "../data/Posts";
+import { Link } from "react-router-dom";
 
-const BlogPost = () => {
+const BlogList = () => {
   return (
     <div className="blog-post">
       <ul className="blog-post-list">
@@ -21,8 +22,7 @@ const BlogPost = () => {
                   })}
                 </div>
               </div>
-              <a href="../data/Posts.jsx">{post.title}</a>
-              {/* <p>{post.content}</p> */}
+              <Link to={`/posts/${post.id}`}>{post.title}</Link>
               <div dangerouslySetInnerHTML={{ __html: post.content }} />
             </li>
           );
@@ -32,4 +32,4 @@ const BlogPost = () => {
   );
 };
 
-export default BlogPost;
+export default BlogList;
