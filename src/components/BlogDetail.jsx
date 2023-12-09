@@ -1,17 +1,20 @@
-import * as React from "react";
-import { posts } from "../data/Posts";
 import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 
 const BlogDetail = () => {
-  const pageId = parseInt(useParams().id, 10);
+  const [post, setPost] = useState(0);
+  const { id } = useParams();
 
-  const post = posts.find((post) => {
-    return post.id === pageId;
-  });
-
-  if (!post) {
-    return <p>該当する記事が見つかりません。</p>;
-  }
+  useEffect(() => {
+    const fetchPost = async () => {
+      const response = await fetch(
+        `https://1hmfpsvto6.execute-api.ap-northeast-1.amazonaws.com/dev/posts/${id}`
+      );
+      const post = await response.json();
+      setPost(post);
+    };
+    fetchPost();
+  }, [id]);
 
   return (
     <div className="blog-detail">
