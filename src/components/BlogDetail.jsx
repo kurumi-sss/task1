@@ -1,18 +1,27 @@
-import * as React from "react";
-import { posts } from "../data/Posts";
 import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 
 const BlogDetail = () => {
-  const pageId = parseInt(useParams().id, 10);
+  const [post, setPost] = useState(null);
+  const { id } = useParams();
 
-  const post = posts.find((post) => {
-    return post.id === pageId;
-  });
+  useEffect(() => {
+    const fetchPost = async () => {
+      const response = await fetch(
+        `https://1hmfpsvto6.execute-api.ap-northeast-1.amazonaws.com/dev/posts/${id}`
+      );
+      const data = await response.json();
+      setPost(data.post);
+    };
+    fetchPost();
+  }, [id]);
+  // もし記事がまだ読み込まれていない場合、ローディングメッセージを表示
 
   if (!post) {
-    return <p>該当する記事が見つかりません。</p>;
+    return <div>Loading...</div>;
   }
 
+  // データが取得されたら記事の内容を表示
   return (
     <div className="blog-detail">
       <img src={post.thumbnailUrl} alt="" />
@@ -22,7 +31,7 @@ const BlogDetail = () => {
             {new Date(post.createdAt).toLocaleString()}
             {/* 日付 */}
           </div>
-          <div className="blog-category">
+          {/* <div className="blog-category">
             {post.categories.map((category) => {
               return (
                 <div className="category" key={category}>
@@ -31,7 +40,7 @@ const BlogDetail = () => {
               );
             })}
             {/* カテゴリー */}
-          </div>
+          {/* </div> */}
         </div>
         <div className="blog-title">
           <h1>{post.title}</h1>
