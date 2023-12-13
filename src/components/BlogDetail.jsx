@@ -31,7 +31,7 @@ const BlogDetail = () => {
             {new Date(post.createdAt).toLocaleString()}
             {/* 日付 */}
           </div>
-          {/* <div className="blog-category">
+          <div className="blog-category">
             {post.categories.map((category) => {
               return (
                 <div className="category" key={category}>
@@ -40,7 +40,7 @@ const BlogDetail = () => {
               );
             })}
             {/* カテゴリー */}
-          {/* </div> */}
+          </div>
         </div>
         <div className="blog-title">
           <h1>{post.title}</h1>
